@@ -43,12 +43,12 @@ class Scraper
       session.visit(person.mostKnownWork.url)
       rate = session.first('div.ratingValue')
       dir = session.first('div.credit_summary_item a')
-      person.mostKnownWork.rating = rate.text
+      person.mostKnownWork.rating = rate.text.chomp('/10')
       person.mostKnownWork.director = dir.text
 
       # element = session.first('article header h2')
       # puts element.text.strip
-      break
+      # break
     end
   end
 
@@ -59,10 +59,10 @@ class Scraper
         puts "  name: #{person.name}"
         puts "  photoURL: #{person.photoURL}"
         puts "  profileUrl: #{person.profileUrl}"
-        puts "  mostKnownWork #{person.mostKnownWork.title}"
-        puts "  mostKnownWork #{person.mostKnownWork.rating}"
-        puts "  mostKnownWork #{person.mostKnownWork.director}"
-        puts "  mostKnownWork #{person.mostKnownWork.url}"
+        puts "  mostKnownWork title #{person.mostKnownWork.title}"
+        puts "  mostKnownWork rating #{person.mostKnownWork.rating}"
+        puts "  mostKnownWork director #{person.mostKnownWork.director}"
+        puts "  mostKnownWork url #{person.mostKnownWork.url}"
       end
     end
   end
